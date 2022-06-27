@@ -1,0 +1,139 @@
+SELECT // Select column in table 
+DISTINCT // Select column unique in table normally use table 1 column which was filter 
+WHERE // WHERE is clause it is above group by 
+AND OR NOT // Clause
+INSERT // INSERT INTO table(column1, ) VALUES (value1, )
+UPDATE // UPDATE table SET column1 = value1 WHERE 
+DELETE // DELETE FROM table WHERE column 
+TOP // SELECT top record same LIMIT 
+MAX // MAX record of a column, not use both with COUNT in a state selected, used it when table is gone to selected
+MIN // MIN record of a column, not use both with COUNT in a state selected, used it when table is gone to selected 
+COUNT AVG SUM // agressfunction 
+LIKE // FIND
+IN // RECORD is have in a table
+BETWEEN // BETWEEN value
+AS // Alias 
+JOIN // Full join two table includes null of earch other table 
+INNER JOIN // INNER join the record which two table both have and not null 
+LEFT JOIN // LEFT join the record of left table with right table and get all record left table include null when right table does not have 
+RIGHT JOIN // RIGHT join the record or right table with left table and  get all record right table include null when left table does not have 
+SELF JOIN // Self join the record matching with self it used to when to find max record of group in the table 
+FULL JOIN // Full record left right 
+UNION // asocicate two table have same column 
+GROUP BY // GROUP BY a column or multiple column used it both with agressfunction 
+HAVING // Clause column when done group by 
+ANY // Filter record in table which table have column 
+CASE WHEN THEN ELSE END // Clause the record display column to addtion 
+IF // Clause false true 
+IS NOT // Clause condition 
+FIND_TO_SET // Find the record in table or group 
+GROUP_CONCAT // group record 
+CONCAT // CONCAT
+
+
+
+
+
+
+
+
+
+PROCEDURE $$
+DELIMITER 
+	CREATE PROCEDURE procedure(IN pIN INT, OUT pOUT INT, INOUT pINOUT INT)
+	BEGIN 
+		// khai báo variable 
+		DECLARE variableDeclare INT DEFAULT 0;
+		SET variableSet = 0;
+
+		// set variable
+
+		SET variableDeclare = variable inside procedure || variable call procedure || variable of parameter; 
+		SET variableSet = variable inside procedure || variable call procedure || variable of parameter; 
+		SELECT column1 INTO variable inside procedure || variable call procedure || variable of parameter; 
+
+		// dùng để truyền nhanh argument vào một câu query or subquery chia câu query ra trước khi gộp lại thành một câu 
+
+		@table = variable inside procedure || variable call procedure || variable of parameter; 
+		@sql_stmt = CONCAT('SELECT * FROM', @table, ' LIMIT ?'); 
+		PREPARE stmt FROM @sql_stmt;
+		EXECUTE stmt USING @table;
+		DEALLOCATE PREPARE stmt;		
+
+		// dùng để lưu record tạm thời vào một bảng để có thể truy cập tiếp vào bảng tạm có chứa các record được lưu 
+
+		CREATE TEMPORARY TABLE IF EXISTS tableTemporary;
+		CREATE TEMPORARY TABLE IF NOT EXISTS tableTemporary(
+			column1 INT
+		) AS ( SELECT column1 OR SELECT column1 FROM table );
+
+		INSERT INTO tableTemporary(column1) SELECT(column1 || SELECT column1 FROM table); 
+
+		// Truy vấn 
+
+		SELECT *
+		FROM 
+		(
+			SELECT * 
+			INTO variable
+			FROM table 
+			LEFT JOIN tableLeft 
+			ON 
+			WHERE 
+			GROUP BY 
+			HAVING 
+			ORDER 
+		) AS aliasTable;
+		SELECT aliasTable.* || variableDeclare || variableSet || @table; 
+
+		// dùng để loop 
+
+		DECLARE i INT DEFAULT 1;	
+		DECLARE argument INT DEFAULT 1;
+		WHILE i < argument DO 
+			CALL procedure(argument);
+			SET i = i + 1; 
+			SET argument = argument + 1;
+		END WHILE;
+
+		// dùng khi có một hoặc hai điều kiện 
+
+		IF condition THEN
+		   statements;
+		ELSE
+		   else-statements;
+		END IF;
+		
+		// dùng khi có nhiều điều kiện 
+
+		CASE case_value
+		    WHEN condition THEN statements;
+		    WHEN condition THEN statements;
+		    ELSE 
+		        BEGIN
+		        END;
+		END CASE;
+
+		// Cursor dùng để duyệt qua tất cả các record, dùng để lưu record trước một record 
+
+		DECLARE done INTEGER DEFAULT 0;
+		DECLARE emailAddress varchar(100) DEFAULT "";
+		DEClARE cursorProcedure
+			CURSOR FOR SELECT email FROM employees;
+		DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+
+		OPEN cursorProcedure;
+		loopProcedure: LOOP
+			FETCH cursorProcedure INTO emailAddress;
+			IF done = 1 THEN 
+				LEAVE loopProcedure;
+			END IF;
+			SET emailList = CONCAT(emailAddress,";",emailList);
+		END LOOP getEmail;
+		CLOSE cursorProcedure;
+
+DELIMITER ;
+
+
+
+

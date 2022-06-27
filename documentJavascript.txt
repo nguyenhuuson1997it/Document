@@ -1,0 +1,156 @@
+HÀM DÙNG CHO MẢNG - Mảng lưu được nhiều giá trị, index tự động, 
+
+    typeof của array là object, nhập index cho mảng array[0], nếu nhập name cho index nó sẽ bị chuyển về object 
+
+    array.length -> Trả về index cao nhất chứ không phải số phần tử 
+    
+    array.toString() -> Chuyển array sang string 
+    array.join() -> Chuyển array sang string có ngăn cách 
+
+    array.pop() -> Xóa phần tử cuối mảng và trả về phần tử đã xóa 
+    array.push('', '') -> Thêm phần tử cuối mảng và trả về độ dài mảng
+    
+    array.shift() -> Xóa phần tử đầu mảng và trả về phần tử đã xóa 
+    array.unshift() -> Thêm phần tử đầu mảng và trả về độ dài mảng 
+
+    array.splice(vị trí, số lượng, phần tử chèn) -> Xóa hoặc chèn mảng theo index 
+    array.slice(vị trí, số lượng) -> cắt phần tử mảng theo index hoặc copy array 
+    array.concat() ->Nối 2 mảng 
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+HÀM 
+    
+    Có 3 loại hàm: Declare function, Express function, Arrow function, Closure function  
+
+        Declare function -> function đặt tên 
+        Express function -> function anonymous được gán vào variable 
+        Arrow function -> function rút gọn của express function 
+        Closure function -> function chưa kích hoạt trả và nhận như một variable, có thể dùng variable của parentFunction  
+
+    this trong function: this là global 
+    this trong function constructor: this là global, khi new mới là object dùng để kế thừa 
+                                        
+    call() vs apply() 
+    
+        Dùng khi muốn kế thừa một function từ function constructor có cùng thuộc tính hoặc phương thức 
+        Khác nhau argument, call() dùng biến apply() dùng mảng 
+
+    bind() 
+
+        Dùng khi muốn gọi một hàm và trả về hàm mới từ một function constructor 
+
+    closures 
+
+        Dùng khi muốn lấy giá trị của parentFunction truyền vào cho closureFunction 
+        Giá trị được truyền chỉ dùng cho parentFunction và closureFunction 
+
+
+
+
+
+
+
+
+
+
+OBJECT: 3 loại object, litetal, new constructor, new Object() 
+    
+    - itetal
+
+        object = {
+            property: string / number, 
+            method: function() { 
+
+            }, 
+            [variable_key]: variable -> Thêm key trực tiếp trong object 
+        } 
+    
+    - new constructor 
+
+        function functionConstructor() {
+            this.property = variable; 
+            this.method = function() {
+
+            } 
+        } 
+    
+    - new Object 
+
+        object = new Object(); 
+        
+    - This trong object constructor là global, khi new mới là object dùng để kế thừa 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    - Gọi -> object.key / object['key'] / object[variable_key] 
+
+    - Thêm hoặc sửa -> object.key = variable 
+
+    - Xóa -> delete object.key  
+
+    - Get và Set trong object -> Gọi method truyền argument theo kiểu property, = thay cho () 
+
+    - Tính kéo theo: Nếu object A được gán vào object B, nếu object B thay đổi, object A cũng thay đổi theo 
+    
+    - Object prototype: 
+
+        Thêm property or method phải thêm bên trong hàm tạo, muốn thêm ngoài dùng prototype 
+        Khi dùng prototype muốn dùng this của hàm tạo, dùng function 
+        
+
+
+
+    - Object Sets -> dùng giống array 
+
+    - Object Maps -> dùng giống object 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VARIABLE
+    var 
+    let 
+    const 
+    Nếu không đặt var, let, const biến sẽ là global 
+
+
+
+

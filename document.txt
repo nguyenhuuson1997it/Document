@@ -1,0 +1,239 @@
+ELEMENT  
+    h1 - h6: heading dùng cho tiêu đề 
+    p: paragraph - đoạn văn bản 
+        - <hr> để thêm đường ngang 
+        - <br> để xuống dòng 
+    img: image hình ảnh 
+    a: anchor thẻ nêu liên kết 
+    ul - li: unordered list - list danh sách 
+    table: bảng 
+        - Tổng số cột bên trong bảng phải bằng tổng số cột của header 
+        - colspan: Số cột 
+        - rowspan: Số hàng 
+    input: thẻ nhập 
+    button: nút 
+    div: thẻ chứa 
+
+SELECTOR 
+
+    #id - Chọn theo id 
+    .class - Chọn theo class 
+    tag - Chọn theo tag 
+    element[attr] - Chọn theo thuộc tính cần có thuộc tính target trong thẻ 
+    * - Chọn tất cả 
+
+3 cách style css: internal, external, inline 
+
+Độ ưu tiên: !important > inline(1000) > id(100) > class(10) > tag 1 
+
+    Nếu các selector viết liền nhau -> thẻ đó cần phải có tất cả các thuộc tính 
+    Nếu các selector viết cách nhau bằng " " -> chọn tất cả thẻ bên trong nó 
+    Nếu các selector viết cách nhau bằng "," -> chọn nhiều thẻ cùng lúc 
+
+    Nếu các selector viết cách nhau bằng ">" -> chọn tất cả thẻ con nằm bên trong nó 
+    Nếu các selector viết cách nhau bằng "+" -> chọn thẻ đầu tiên nằm sau nó 
+    Nếu các selector viết cách nhau bằng "~" -> chọn tất cả thẻ nằm sau nó 
+    Nếu các selector có thuộc tính pseudo class - thẻ phía sau sẽ được kích hoạt thuộc tính khi pseudo class của thẻ trước chạy 
+
+PSEUDO CLASS
+
+    :hover - đưa chuột lên element 
+    :active - click chuột vào element 
+    :first-child - element đầu 
+    :last-child - element cuối 
+    :nth-child() - element 
+
+ELEMENT ELEMENT 
+
+    ::before - element đầu 
+    ::after - element cuối 
+
+THUỘC TÍNH LIÊN QUAN ĐẾN CHỮ 
+
+    font-size: Kích thước 
+    font-weight: Đậm nhạt 
+    font-family: Font chữ 
+    font-style: Kiểu chữ 
+    text-transform: Viết hoa, viết thường 
+    line-height: Giãn dòng 
+    letter-spacing: Khoảng cách 
+    text-align: Canh lề 
+    text-decoration: Gạch chân 
+    color: Màu chữ 
+
+
+
+
+
+
+
+
+
+
+
+THUỘC TÍNH LIÊN QUAN ĐẾN HÌNH 
+
+    background: ảnh nền 
+    background-color: màu nền 
+    background-image: ảnh nền 
+    background-repeat: ảnh lặp lại 
+    background-position: vị trí ảnh nền 
+    background-size: kích thước hình ảnh 
+    background-attachment: hiển thị khi cuộn trang 
+    transform: scale(): hiệu ứng zoom 
+
+THUỘC TÍNH LIÊN QUAN ĐẾN KHỐI 
+
+    display: block - chiếm hết một line-block 
+    display: inline - chiểm một phần line-block nhưng không tạo khối 
+    display: inline-block - chiếm một phần line-block và tạo khối cho element có thể tăng giảm kích thước 
+    box-sizing: cố định chiều cao và chiều rộng 
+    border: viền khối 
+    margin: Khoảng cách khối 
+    Nếu padding một div padding-top: 50% nó chính là chiều cao của div theo chiều rộng 
+    padding: Tăng kích thước khối 
+    box-shadow: đổ bóng khối 
+    transform: canh chỉnh khối theo trục xy 
+    overflow: hidden - ẩn các phần element bên trong khối vượt quá khối 
+    
+THUỘC TÍNH LIÊN QUAN ĐẾN FLEXBOX 
+
+    display: flex -> Chiếm hết một line-block - giống display: block 
+    display: inline-flex -> Chiếm một phần line-block - giống display: inline 
+    flex-direction: row - item xếp theo hàng ngang - giống float: left 
+    flex-direction: row-reverse - item xếp theo hàng ngang ngược lại - giống float: right 
+    flex-direction: column - item xếp theo hàng dọc 
+    flex-direction: column - item xếp theo hàng dọc ngược lại 
+    flex-wrap: wrap / no-wrap - item xuống dòng hay không xuống dòng 
+    
+    justify-content: canh chỉnh theo chiều ngang cho các element bên trong khối 
+        center: canh giữa chiều ngang - giống text-align: center 
+        flex-start: dồn sang trái 
+        flex-end: dồn sang phải 
+        nếu dùng flex muốn canh trái phải dùng margin-left: auto; 
+        flex: 1: phần tử chiếm hết diện tích có thể chiếm 
+        base-line: chỉ canh chữ cho thẳng hàng 
+    align-items: canh chỉnh theo chiều dọc cho các element bên trong khối 
+        center: canh giữa chiều dọc 
+        flex-start: dồn lên trên 
+        flex-end: dồn xuống dưới 
+
+THUỘC TÍNH LIÊN QUAN ĐẾN POSITION 
+
+    position: relative - Nổi lên trên nó chính là gốc - dùng với margin, padding 
+    postion: absolute - Nổi lên trên element cha có position - dùng với top, right, bottom, left 
+    position: fixed - Nổi lên trên trình duyệt 
+    z-index: tầng của element 
+
+
+
+
+
+THUỘC TÍNH ANIMATION - Hoạt động tự do 
+    
+    @keyframes animation {
+        from {
+
+        } 
+        to {
+
+        } 
+    } 
+    
+    @animation {
+        0% {} 
+        25% {} 
+        50% {} 
+        75% {} 
+        100% {} 
+    } 
+
+    Áp dụng animation 
+    element {
+        animation-name: tên animation; 
+        animation-duration: thời gian thực hiện; 
+        animation-timing-function: hiệu ứng thực hiện 
+        animation-delay: thời gian chờ thực hiện; 
+        animation-iteration-count: số lần thực hiện; 
+        animation-direction: hướng thực hiện sau khi thực hiện 
+        animation: tên animation, thời gian, hiệu ứng, thời gian chờ, số lần, hướng di chuyển 
+    } 
+    
+THUỘC TÍNH TRANSITION - Hoạt động cần một thuộc tính của phần tử kéo theo 
+
+    element {
+        width: 20px; 
+        transition-property: thuộc tính thay đổi; 
+        transition-duration: thời gian hiệu ứng; 
+        transition-timing-function: hiệu ứng thực hiện; 
+        transition-delay: thời gian chờ thực hiện; 
+        transition: thuộc tính, thời gian, hiệu ứng, thời gian chờ 
+    } 
+
+    element:hover {
+        width: 50px; 
+    } 
+
+VARIABLE CSS 
+
+:root {
+    --name-variable: atrtibute 
+} 
+element {
+    attribute: var(--name-variable)
+} 
+
+THUỘC TÍNH ĐƠN VỊ 
+
+    px - giá trị tuyệt đối không phụ thuộc thẻ chứa nó 
+    % - giá trị tương đối phụ thuộc thẻ chứa nó 
+    rem / em - giá trị tương đối phụ thuộc vào font-size html / thẻ gần nhất 
+    vw - chiều ngang trình duyệt 
+    vh - chiều dọc trình duyệt 
+
+MEDIA QUERIES 
+    min-width: độ rộng nhỏ nhất tính lên 
+    max-width: độ rộng lớn nhất tính xuống 
+    
+    PC: trên 1024 
+    TAB: từ 740 đến 1024 
+    MOBILE: dưới 740 
+
+PC
+    @media (min-width: 1024px) {
+
+    } 
+TABLET
+    @media (min-width: 740px) and (max-width: 1024px){
+
+    } 
+MOBLIE
+    @media (max-width: 740px){
+
+    } 
+
+
+
+
+[class*="col-"] {
+    width: 100%;
+}
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+}
+
+
+
+

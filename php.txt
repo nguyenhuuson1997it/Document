@@ -1,0 +1,206 @@
+// String 
+	- Check string ( Kiểm tra có phải string hay không ) -> is_string():bool true | false ( Nếu là string có rỗng cũng tính là string )
+
+	- Check empty ( Kiểm tra string có rỗng hay không ) -> empty():bool true | false ( Nếu là string bằng '' hoặc bằng '0' tính là rỗng ) 
+
+	- Convert string -> (string) $variable 
+
+
+// Number 
+	- Check number ( Kiểm tra có phải number hay không ) -> is_numeric():bool true | false ( Nếu number ở dạng string vẫn tính là number ) 
+
+	- Check number int ( Kiểm tra có phải kiểu int hay không ) -> is_int: bool true | false 
+
+	- Check number float ( Kiểm tra có phải kiểu float hay không ) -> is_float bool true | false 
+
+	- Check empty ( Kiểm tra number có rỗng hay không ) -> empty():bool true | false ( Nếu number bằng 0 hoặc '0' tính là rỗng ) 
+
+	- Convert number -> (int) | (float) $variable 
+
+// Array 
+	- Check array ( Kiểm tra có phải array hay không ) -> is_array():bool true | false ( Nếu là array rỗng cũng tính là array ) 
+
+	- Check empty ( Kiểm tra array có rỗng hay không ) -> empty():bool true | false ( Nếu là array rỗng thì tính là rỗng ) 
+
+	- Check array key ( Kiểm tra array có key hay không ) -> array_key_exists('key', $variable):bool true | false 
+
+	- Check array value ( Kiểm tra array có value hay không ) -> in_array('value', $variable):bool true | false 
+
+	- Convert array -> (object) $variable 
+
+// Object 
+	- Check object ( Kiểm tra có phải object hay không ) -> is_object():bool true | false ( Nếu là object có rỗng cũng tính là object ) 
+
+	- Check empty ( Kiểm tra object có rỗng hay không ) -> count(get_object_vars()) > 1 ? true | false 
+
+	- Check has property ( Kiểm tra object có thuộc tính hay không ) -> property_exists():bool true | false (Nếu là object có thuộc tính null vẫn tính là có) 
+	
+	- Convert object -> json_decode(json_encode($variable)) / (array) $variable 
+
+// isset() 
+	- Dùng để kiểm tra null, undefined, hoặc chưa gán trị $variable 
+
+
+
+
+
+
+
+// PHP Object 
+	+ Autoloading: spl_autoload_register load Tên những class được extends, implement và được khởi tạo 
+
+	+ __construct và __destruct: 
+								__construct hàm chạy đầu tiên, nếu B kế thừa A, A có __construct, B không, thì B sẽ chạy __construct của A 
+								__destruct hàm chạy cuối cùng, vẫn chạy dù có exit() 
+
+	+ Visibility: public không cần kế thừa, protected cần kế thừa, private chỉ sử dụng bên trong class khởi tạo function 
+
+	+ Abstract và Interface: Abstract khai báo abstract cho function nào thì phải overwrite function đấy, Interface thì chỉ khai báo hằng, function với tham số 
+
+	+ Trait: Dùng cho đa kế thừa khi use một trait vào có thể đổi tên function và visibility của trait đó 
+
+	+ Inheritance: Class children giống một bản copy của Class parent nhưng có thể custom hoặc overwrite 
+
+	+ Point or Cursor: - Nếu không có kế thừa: $this là chính nó, static là chính nó, self là chính nó 
+					   - Nếu có kế thừa: - Class parent: $this là đối tượng đang gọi nó, static là đối tượng gọi nó, self là chính nó 
+					   					 - Class children: $this là chính nó, static là chính nó, self là chính nó, parent là Class parent 
+					   - Trả về object this không cần dùng new, nhưng self và static phải cần dùng new 
+
+	+ Overwrite: Nếu muốn overwrite một function thì phải cùng phương thức và tham số 
+
+	+ Overloading: Overwrite lên các function tương tác mặc định với đối tượng của php __set(), __get(), __isset(), __unset(), __call(), __callStatic() 
+
+	+ Early binding vs Late binding: 
+									Nếu B kế thừa A: 
+									- A dùng trỏ $this hoặc static thì khi B gọi A, đối tượng thực hiện lệnh gọi là B (đối tượng hiện tại) Early binding 
+									- A dùng trỏ self thì khi B gọi A, thì đối tượng thực hiện lệnh gọi là A (đối tượng khởi tạo) Late binding 
+									class A {
+									    
+									    public function X(){
+									        print_r('A');    
+									    }
+									    
+									    public function Y(){ 
+									        $this->X(); 	// B 
+									        static::X(); 	// B
+									        self::X(); 		// A 
+									    } 
+									    
+									} 
+									class B extends A {
+										
+										public function X(){
+										    print_r('B'); 
+										}  
+										
+										public function Y(){
+											
+											$this->X(); 
+											parent::Y(); 
+									    } 
+									    
+									} 
+
+
+
+
+
+
+
+
+
+
+Advances PHP
+Các loại biến, phạm vi của biến, nâng cao 
+Các kiểu dữ liệu, chuyển đổi giữa các kiểu dữ liệu 
+
+Datatype: 
+	+ Cụm falsy gồm 5 phần tử: false, 0 (int, float, string), "", [], NULL 
+	+ Khi so sánh true false 
+		- Trừ cụm falsy ra còn lại đều bằng true, Nếu dùng strict thì false hết chỉ true nếu cùng kiểu 
+		- Lưu ý Nan vẫn bằng true, float 0.0 bằng false vì nó float nhưng string "0.0" bằng true vì nó là string 
+
+	+ Để kiểm tra kiểu dữ liệu dùng is_{datatype}()
+	
+String: 
+	kiểm tra có phải string không: 
+		is_string('string'): true | false 
+	kiểm tra string có rỗng không: 
+		$string === '' hoặc empty('') hoặc strlen('') === 0 
+Number:
+	kiểm tra có phải number không: is_numeric(): true | false, lưu ý nó bao gồm cả string number  
+	Kiểm tra chính xác phải dựa vào loại của nó int hay float 
+	chuyển sang int hoặc float, (int) hoặc (float) rồi dùng is_int hoặc is_float 
+Boolean: 
+	kiểm tra có phải boolean không: is_boolean(): true | false  
+Array: 
+
+
+
+
+	
+	Lưu ý: 
+	Array một dòng không cần tralling comma, nhưng nhiều dòng thì cần 
+	key array nhận int và "string character" làm key, array & object không dùng làm key, nếu key trùng nhau nhận cái cuối cùng 
+	key array convert sẽ được convert sang kiểu int, trừ null convert sang string rỗng 
+	index được đánh lại bằng index trước đó cộng 1 
+	Dùng unset để remove 
+	Dùng array_values để reset key 
+
+
+
+Object: 
+	stdClass tạo ra khi convert object 
+Interables: 
+	xác định type của mà hàm trả về 
+Enum: 
+	liệt kê các constant 
+NULL: 
+	khi nó được gán bằng null, khi chưa khai báo giá trị cho biến và khi unset, null không có phân biệt hoa thường 
+	kiểm tra null dùng -> is_null() return true | fase hoặc unset() return null 
+Callbacks / Callables: 
+	Callbacks là truyền một callables như một arguments, ví dụ như call_user_func hoặc usort 
+	gọi hàm dùng -> call_user_func('name function'), 
+	gọi hàm static dùng -> call_user_func('CLASS', 'name function') hoặc call_user_func('CLASS::name function') 
+	gọi hàm từ object -> call_user_func(array($object, 'name function')) 
+	gọi hàm với con trỏ: call_user_func('B', 'parent::functionA') // A 
+
+
+
+
+
+
+
+Number: (int) -1 0 1 (float) -1.0 0.0 1.0 
+	+ string => string 
+	+ object => object scalar 
+	+ array => array assoc 
+	+ boolean: bool theo cụm falsy 
+String:  
+	+ number => nếu là numeric return int, nếu là string "" "string" return 0 
+	+ object => object scalar 
+	+ array => array assoc 
+	+ boolean => bool theo cụm falsy 
+Object: 
+	+ string: không được 
+	+ number: 1 
+	+ array: array assoc[property' => value] nhưng không nhận method 
+	+ boolean: bool theo cụm falsy 
+Array: 
+	- index & assoc
+		+ object => nếu array[] return object rỗng, nếu array[elements] return object { index: elements } 
+		+ number => nếu array[] return 0, nếu array[elements] return 1 
+		+ string => "Array" 
+		+ boolean => bool theo cụm falsy 
+	- mutil: [ [], [1], ["string"] ]
+		+ object => return object { index: elements } 
+		+ number => không được 
+		+ string => "Array"  
+		+ boolean => true 
+Boolean: 
+	+ string => Dựa theo cụm falsy 
+	+ object => true 
+	+ array => Dựa theo cụm falsy 
+	+ number: Dựa theo cụm falsy 
+Null: 
+Convert 

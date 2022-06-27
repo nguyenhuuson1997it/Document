@@ -1,0 +1,608 @@
+VARIABLE 
+	var: biến global không có block spoce, có thể khởi tạo lại và nó hosting 
+	let: biến local scope, không thể khởi tạo lại cùng một scope
+	const: biến local scope, không thể khởi tạo lại cùng một spoce và không thể update 
+
+	var vs let có thể khai báo nhưng chưa gán giá trị, const thì phải gán giá trị 
+	Nếu không khởi tạo var, let, const nó sẽ là global browser 
+	Inner spoce có thể truy cập ra outer spoce, còn outer spoce thì không thể truy cập inner scope
+	Chỉ có reference mới có thể thêm thuộc tính, primary build in thì không 
+	re-declare: khởi tạo lại biến  
+	hosting: dùng biến var hoặc declare function trước khi khởi tạo 
+	block-scope: phạm vi truy cập của biến 
+
+TOÁN TỬ 
+	Prefix: Thực hiện trước rồi trả về sau 
+		var a = 1; 
+		var output = ++a; // cộng + 1 cho a, rồi trả về => output = 2 
+	Postfix: Trả về trước rồi thực hiện sau 
+		var a = 1; 
+		var output = a++; // trả về trước a copy = 1, rồi cộng + 1 sau => output = 1 
+	var a = 1; 
+	var output = a++ + --a; 
+	// trả về 1 copy trước cho a++ => a++ = 1, rồi cộng sau => a = 2 sau khi chạy qua a++ 
+	// đến dấu cộng lúc này a++ tính toán xong rồi nên --a sử dụng a++ lúc nảy nhưng cộng thêm 1 (a = 2)
+	// --a là tiền tố nên thực hiện trước rồi trả về sau, lúc này a = 2 => --a = 1 => output = 2 
+
+TOÁN TỬ NÂNG CAO 
+	Cụm falsy: false, 0, "", undefined, null, NaN 
+
+	&& nếu toán tử đúng thì trả về cái cuối cùng, nếu toán tử sai thì trả về vị trí sai theo cụm falsy 
+	var result = 'A' && 'B' && 'C'; => result = 'C'; var result = 'A' && undefined && 'C'; => result = undefined; 
+	|| nếu biểu thức đúng thì trả về cái đầu tiên, nếu biểu thức sai thì trả về giá trị phía sau giá trị sai 
+	var result = 'A' || 'B' || 'C'; => result = 'A'; var result = undefined || undefined || 'C'; => result = 'C'; 
+
+SỬ DỤNG CHO STRING 
+	string.length: chiều dài chuỗi 
+	string.indexOf(''): tìm vị trí của chuỗi đầu tiên 
+	string.lastIndexOf(''): tìm vị trí của chuỗi cuối 
+	string.search(): 
+	string.slice(): cắt chuỗi 
+	string.replace(/to/g, 'from'); 
+	string.toUppercase(): viết hoa 
+	string.toLowercase(): viết thường 
+	string.trim(): loại bỏ khoảng trắng hai đầu 
+	string.split(): cắt chuỗi thành mảng 
+	string.charAt(): index của chuỗi 
+
+SỬ DỤNG CHO NUMBER 
+	number.toString(): chuyển sang chuỗi 
+	number.toFixed(number format): format number 
+
+
+
+
+
+
+
+
+
+SỬ DỤNG CHO ARRAY 
+array.pop(): xóa phần tử cuối và trả về phần tử đã xóa 
+array.shift(): xóa phần tử đầu và trả về phần tử đã xóa 
+array.push(element, ''): thêm phần tử vào mảng cuối mảng và trả về 
+array.unshift(element, ''): thêm phần tử vào đầu mảng và trả về 
+
+Declaration function 
+
+- Có thể gọi trước khi function khởi tạo Hosting 
+
+function declare(){
+	
+}  
+
+Expression function 
+
+- Không thể gọi trước khi function khởi tạo Hosting 
+
+expresssion = function(){
+	
+} 
+
+
+
+
+
+
+
+
+
+
+Arrow function 
+- Không có this context, this đó sẽ bằng window và nó cũng không tạo được constructor  
+Polyfill chuyển es6 
+
+
+Object 
+delete object.property // xóa thuộc tính object 
+
+Object constructor // Viết hoa chữ cái đầu 
+function ObjectConstructor(){
+	this.property = 'property'; 
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+Object prototype 
+
+	function Object(){
+		this.objectProperty = 'objectProperty'; 
+	} 
+
+	- các thuộc tính hay phương thức dùng định nghĩa bằng prototype nằm trong __proto__ 
+
+	Object.prototype.prototypeProperty = 'Prototype Property'; 
+
+	Object.protype.getProperty = function() {
+		return this.prototypeProperty; // return 'Prototype Property' 
+	} 
+
+
+
+
+
+if else dùng cho toán tử, switch dùng cho giá trị biết trước 
+
+
+
+
+
+// Mảng 
+Duyệt qua một object đơn dùng for in 
+Duyệt qua một array đơn dùng for of 
+
+
+
+
+
+
+
+
+
+
+
+
+- Duyệt qua một mảng data dùng forEach 
+
+array.forEach(function(item, index){
+	console.log(index, item); 
+}); 
+
+- Duyệt property tất cả các phần tử trong mảng đều có 
+
+isAllProperty = array.every(function(item, index){
+	return item.property === 1; // return true false
+}); 
+
+- Duyệt property tất cả các phần tử trong mảng chỉ cần một cái có 
+
+isSingleProperty = array.some(function(item, index){
+	return item.property === 1; // return true false 
+}); 
+
+- Tìm kiếm một phần tử trong mảng 
+
+object = array.find(function(item, index){
+	return item.property === 'property'; // return object 
+}); 
+
+- Tìm kiếm tất cả các phần tử trong mảng 
+
+arrayObject = array.filter(function(item, index){
+	return item.property === 'property'; // return array object 
+}); 
+
+- Chỉnh sửa tất cả phần tử trong mảng 
+
+updateArray = array.map(function(item, index){
+	return {
+		property: 'property' 
+	} // return array object 
+}); 
+
+
+- Đưa ra kết quả cuối cùng
+reduceArray = array.reduce(function(total, item){
+	return total + item.property
+}); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var array = ['Meow', 'Onichan', 'UwU'] 
+Array.prototype.recudeCustom = function(callBack, result) {
+	let i = 0 
+	if(arguments.length < 2) {
+		result = this[0] 
+		i = 1 
+	} 
+	for(; i < this.length; i ++) {
+		return result = callBack(result, this[i])
+	} 
+	return result 
+} 
+reduceArray = array.reduceCustom(function(acc, cur) {
+	return acc + cur 
+}, result)
+
+arrayData = []; 
+customArray = new customArray(arrayData); // Xem customArray giống như một array built in 
+// closure function chính là tham số của custom 
+// item, index chính là tham số của closure truyền vào khi custom gọi function closure  
+updateArray = customArray.custom(function(item, index){
+	// Mỗi lần khi được gọi sẽ trả về lại 
+	return {
+		item: item, 
+		index: index
+	} 
+}); 
+
+function arrayCustom(arrayData) {
+
+	this.arrayDefault = arrayData; 
+
+	this.updateArray = []; 
+
+	// method custom nhận một closure function là một tham số 
+	this.custom = function(closure) {
+
+		cursor = this; 
+		
+		// Mỗi lần lặp sẽ gọi lại function closure và tham số nó cần 
+		cursor.arrayDefault.forEach(function(item, index){ 
+			
+			// Sau khi function closure chạy xong lại trả về data 
+			cursor.updateArray.push(closure(item, index)); 
+
+		}); 
+
+		// Thực hiện xong trả về mảng updateArray 
+		return cursor.updateArray; 
+	} 
+
+
+} 
+// HTML DOM 
+node = document.querySelector('#id / .class / tag / tag['atrribute'] - :first-child / :nth-child(index)/ :last-child'); 
+
+// GET VS SET ATTRIBUTE 
+node.getAttribute(); 
+node.setAttribute(); 
+
+// TEXT 
+node.innerText // Lấy ra text giống như những gì nhìn thấy 
+node.textContent // Lấy ra text theo định dạng code bao gồm cả các node ẩn 
+
+// TEMPLATE STRING 
+node.innerHTML set ghi đè bên trong, get thì trả về bên trong 
+node.outerHTML set ghi đè chính nó, get thì trả về chính nó 
+
+// ATTRIBUTES  
+elementChild vs ChildNode // elementChild trả về element còn ChildNode trả về node bao gồm khoảng trắng và xuống dòng 
+nodeType: 1 elementNode, 2 attributeNode, 3 textNode 
+// SELECT ELEMENT 
+
+
+
+
+
+
+
+
+
+
+// DOM CSS 
+node.style // css inline 
+Object.assign(node, { 
+	// style css 
+}); 
+trong css ~ trỏ phần tử phía sau 
+// EVENT DOM 
+e.preventDefault(); 
+e.stopPropagation(); 
+DOM Event: 
+node.onclick - Dành cho sự kiện không remove - Viết nhiều việc trong một function 
+node.addEvenlistener('click', ) - Dành cho sự kiện remove - Chia nhiều việc gọi function 
+
+
+
+
+
+
+
+
+
+HÀM 
+	trong hàm gọi là tham số parameter 
+	truyền vào gọi là đối số argument 
+	Sử dụng arguments:
+
+		function getArguments(){
+			console.log(arguments); 
+		}
+
+		getArguments(ar1, ar2, ar3); 
+
+
+	Loại function 
+
+	
+	
+
+
+
+	- Declare function: function định danh, có thể hosting 
+
+		function declareFunction(){
+
+		} 
+
+	- Express function: function anonymous được gán vào một giá trị khác hoặc được xem như một parameter, không thể hosting 
+
+		expressFunction = function (){
+
+		} 
+		
+	- Arrow function: dạng rút gọn của express function 
+
+		arrowFunction = () => {
+			
+	} 
+	
+
+
+
+
+
+
+
+
+
+THIS: Con trỏ tham chiếu 
+	
+	- this một mình là window 
+	- this trong object là object 
+	- this trong function là window, trong constructor là object  
+	- this trong strict mode là undefined 
+	- this trong một event là phần tử 
+	
+	apply(), bind(), call() có thể gọi this ở mọi object, this không thể cập nhật 
+		call() vs apply() - object -> objectParent.methodOfParent.call(object); 
+		call() vs apply() - class -> bên trong function constructor functionParent.call(new function); 
+		call() argument -> objectParent.methodOfParent.call(object, argument); 
+		apply() argument -> objectParent.methodOfParent.call(object, ['argument']); 
+
+
+
+
+
+
+
+
+
+
+
+JAVASCRIPT ES6 
+	Rút gọn object literal 
+		- Rút gọn key với value nếu giống name 
+		- Rút gọn chữ function 
+		- Định nghĩa key dưới dạng biến 
+	
+	var variable = 'value'; 
+	var field = 'key_name'; 
+	var object = {
+		variable, 					// variable: 'value' 
+		[field]: 'value', 			// key_name: 'value' 	
+		function() {
+
+		} 
+	} 
+
+	Destructuring, Rest, Spread 
+
+	Destructuring -> Giải ra phần tử 
+
+		var array = ['A', 'B', 'C']; 
+		var object = {
+			a: 'A', 
+			b: 'B', 
+			c: {
+				c13: 'C'
+			}
+		} 
+
+		var [a, b, c] = array; -> return a, b, c 
+		
+		var {a, b, c: {c13: child}, default = 'variable' } = object -> return a, b, c, child, default 
+
+	Rest 
+
+		var [a, ...rest] = array; -> return a, rest 
+		var {a, ...rest} = object; -> return a, rest 
+	
+
+	Spread 
+
+		var array1 = ['meow']; 
+		var array2 = ['uwu]; 
+
+		-> var arraySpread = [...array1, ...array2]; 
+
+		var object1 = {
+			name: 'meow'
+		} 
+		var object2 = {
+			name: 'uwu'
+		} 
+
+		-> var objectSpread = {
+				...object1, 
+				...object2
+		} 
+
+	Template tagged 
+
+		function templateTagged(...rest) {
+			rest[0] -> [This is, of]; 
+			rest[1] -> name
+		} 
+
+		templateTagged`This is ${name} of `
+	
+	
+	
+	
+	
+	
+	
+	
+	Modules: 
+		export default thì import không cần {}, không default thì cần {} để rải destructuring 
+		cũng có thể dùng * as object để gộp các export vào một object 
+		export default exportDefault; 
+		export noneDefault; 
+		import exportDefault, {noneDefault} from './'; 
+		import * as objectExport from './'; 
+		objectExport.default; 
+		objectExport.noneDefault; 
+		import, export default một module: export { default } from './' 
+
+
+	Optional chaining -> object có thuộc tính hay không 
+	
+		var object = {
+			property = 'meow'
+		} 
+
+		if(object.property // object?.property){
+
+		} 
+
+
+
+
+
+	- Enhandced object litetal 
+		Rút gọn key với value nếu tên value giống tên key cho object 
+		Định nghĩa method rút gọn cho object, định nghĩa key dạng biến 
+	
+	- Rest: Lấy phần còn lại của parameter hoặc ... phân rã cho destructuring  
+		rest('A', 'B', 'C'); 
+		array: function rest(A, [...params]) // A, ['B', 'C'] 
+	
+	- Spread: Rải array, object ra phần tử, bỏ đi dấu ngoặc khi truyền argument, 
+		array = [...array1, ...array2] // object = { ...object1, ...object2 } 
+		
+		function method(...params)  // rest 
+		method(...array) // spread 
+
+	- Destructuring: dùng phân rã object, array ra biến 
+		var array = ['A', 'B', 'C']; 
+		var [a, b, c] = array; // theo index 
+		Nếu có phần tử nằm trong: 
+		var array = ['A', 'B', ['C', 'D']]; 
+		var [a, b, [c, d]] = array; 
+
+		var object = { A: 'A', B: 'B', C: 'C' } 
+		var [A, B, C] = object // theo key object 
+		Nếu có phần tử nằm trong: 
+		var object = { A: 'A', B: 'B', C: { D: 'D'} } 
+		var {A:parent, B, C: {D: children}} 
+		dấu 2 chấm để đổi tên 
+
+		ứng dụng dùng để xóa object không dùng delete 
+		var {A, ...objectRest} = object; // objectRest {B: 'B', C: 'C'} // đây toán tử rest 
+
+STORAGE API 
+
+	localStorage - Lưu theo domain, user xóa - 10MB 
+		localStorage.setItem('nameStorage', 'valueStorage'); 
+		localStorage.getItem('nameStorage'); 
+		localStorage.removeItem('nameStorage'); 
+		localStorage.clear(); 
+
+	sessionStorage - Lưu theo domain, đóng tab hoặc trình duyệt sẽ xóa - 5MB 
+		sessionStorage.setItem('nameStorage', 'valueStorage'); 
+		sessionStorage.getItem('nameStorage); 
+		sessionStorage.removeItem('nameStorage'); 
+		sessionStorage.clear(); 
+
+	Cookies - Lưu theo domain, thời gian set, user xóa - 4KB - Gửi theo header 
+		document.cookie = 'nameCookie=valueCookie; expires=' + new Date('yyyy', 'mm', 'dd').toUTCString() + ';path=/'; 
+		document.cookie 
+		path=/ của domain 
+
+
+
+
+
+
+
+
+API 
+	fetch(url)
+	.then(function(response){
+		return response.json(); 
+	})
+	.then(function(response){
+		console.log(response);
+	}); 
+
+	async function fetchAPI(){
+		var url = await fetch(url); 
+		var response = url.json(); 
+	} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--JAVASCRIPT
+var: biến global không có block spoce, có thể khởi tạo lại và nó hosting 
+let: biến local scope, không thể khởi tạo lại cùng một scope
+const: biến local scope, không thể khởi tạo lại cùng một spoce và không thể update 
+var vs let có thể khai báo nhưng chưa gán giá trị, const thì phải gán giá trị
+
+Inner spoce có thể truy cập ra outer spoce, còn outer spoce thì không thể truy cập inner scope
+Primary không thể thêm thuộc tính chỉ dùng các thuộc tính build in 
+
+

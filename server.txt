@@ -1,0 +1,23 @@
+// DOMAIN: Lưu địa chỉ link đến IP HOST 
+	// CONFIG/ADMIN CẤU HÌNH DOMAIN TRỞ ĐẾN IP 
+
+
+
+
+// HOST: (LINUX / WINDOW) VPS SERVER 
+	// IP HOST: Dùng để kết nối với DOMAIN 
+	// SSH: Giao thức tương tác với HOST, 
+	// PORT: MỞ PORT ĐỂ NHẬN HTTP 
+	// WEBSERVER: PHẦN MỀM CHẠY CODE TRÊN HOST 
+// BROWSER GỬI REQUEST ĐẾN HOST THÔNG QUA IP: HOST TRẢ VỀ HTML 
+// DOMAIN -> DNS(DỊCH) -> IP HOST -> HOST TRẢ VỀ LẠI HTML 
+
+
+// BACKEND 
+	// BROWSE -> Gửi Http Request -> SERVER (HOST) -> REQUEST GỒM: - REQUEST LINE: METHOD VÀ URL 
+																   - REQUEST HEADER: COOKIE AND USER INFORMATION 
+																   - REQUEST BODY: CONTENT REQUEST 
+// HTTP (STATELESS) -> DÙNG COOKIE, SESSION, DATABASE 
+	// COOKIE: LƯU Ở MÁY NGƯỜI DÙNG 
+	// SESSION: LƯU Ở RAM SERVER 
+	// DATABASE: LƯU DATA 

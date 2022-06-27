@@ -1,0 +1,118 @@
+// Blade 
+// Display content 
+// {{ $data }} 
+// Display content json javascript 
+// var app = <?php echo json_encode($data); ?> 
+// var app = @json($data); 
+// Display unescaped data -> $data = '<p> Data </p>' -> {{ $data }} - result: 'Data', {!! $data !!} - result: '<p> Data </p>' 
+// Display full @verbatim <div> {{ data }} </div> @endverbatim 
+// Including @includeWhen($boolean, 'view.name', ['data' => 'data']) 
+
+
+
+
+
+
+
+
+
+
+// Where 
+// DB::table('table_name')->where([ ['column_name', 'operator', 'condition'],  ])->get(); 
+
+// Orwhere 
+// DB::table('table_name')->where([ ['column_name', 'operator', 'condition'],  ])->orwhere('column_name', 'operator', 'condition')->get(); 
+
+// where And Orwhere 
+// DB::table('table_name')->where(
+							[ 
+								['column_name1', 'operator', 'condition'], 
+								['column_name2', 'operator', 'condition'] 
+							])->orwhere(function($query){ // Connect or query 
+
+								$query->where('column_name3', 'operator', 'condition') 
+									  ->orwhere('column_name4', 'operator', 'condition'); 
+							})
+							->get(); 
+
+
+// When builder running: SELECT * FROM table_name 
+						 WHERE (
+						 		column_name1 operator condition AND column_name2 operator condition
+						 	   )
+						 OR (
+						 	column_name3 operator condition OR column_name4 operator condition
+						 ) 
+
+
+
+
+// whereBetween And whereNotBetween 
+	// DB::table('table_name')->whereBetween('column_name', [value, tovalue])->get(); 
+
+// whereIn And whereNotIn 
+	// DB::table('table_name')->whereIn('column_name', [value])->get(); 
+
+// whereNull And whereNotNull 
+	// DB::table('table_name')->whereNull('column_name')->get(); 
+
+// whereDate / whereMonth / whereYear / whereTime 
+	// DB::table('table_name')->whereTime('column_name', '=', '13:20:42')->get(); 
+
+// whereColumn 
+	// DB::table('table_name')->whereColumn([ ['column_name3', operator, 'column_name6'],  ])->get(); 
+
+// whereExists 
+	// DB::table('table_name')->whereExists(function($query){
+
+									$query->select('column_exists')->from('table_exists')
+										  ->whereColumn('table_exists.column_exists', 'table_name.column_name'); 
+								})->get(); 
+
+
+
+// Sub Query 
+	// $subQuery = \DB::table('table_name')->select('table_name.column_name')->toSql(); // Table subQuery
+	// DB::table(DB::raw("({$subQuery}) AS subQuery"))->select('subQuery.orderNumber', \DB::raw('MAX(subQuery.orderNumber) AS MAX'))->get(); 
+
+// Oderby And inRandomOrder 
+	// DB::table('table_name')->orderBy('column_name', 'asc / desc')->get(); 
+// Groupby And HavingCount / HavingBetWeen 
+	// DB::table('table_name')->groupBy('column_name')->having('column_name', 'operator', condition)->get(); 
+// Offset And Limit 
+	// DB::table('table_name')->groupBy('column_name')->offset(10)->limit(5)->get(); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Laravel hoạt động như thế nào 
+Đầu tiên request chạy vào public/index 
+public/index vendor/autoload autoload các thư viện trong vendor 
+public/index bootstrap/app khởi tạo một cái kế thừa của cái khung bootstrap laravel, load kernel lên để kiểm tra request, load exception để lên thông báo lỗi 
+- Http/Kernel: 
+	Khi request chạy vào Http/Kernel - cấu hình xử lý lỗi 
+									 - cấu hình ghi log 
+									 - load env 
+									 - đăng ký thư viện cho middleware và route để lọc request 
+- Service Provider / Service Container: 
+	Khi request chạy vào Service Provider / Service Container - load Providers (register and boot các phương thức khai báo) 
+															  - load Aliases (gọi static) 
+- Route: Request chạy vào 
+	Request được kiểm tra bởi middleware đã đăng ký trước đó 
+- Controller nhận request 

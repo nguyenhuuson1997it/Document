@@ -1,0 +1,30 @@
+
+
+
+
+
+
+
+
+
+
+
+
+HTTP
+    Gửi request lên serve, serve trả html, trình duyệt DOM và hiển thị 
+    Response: đầu 1 thông tin, đầu 2 thành công, đầu 3 điều hướng, đầu 4 là lỗi client, đầu 5 là lỗi serve 
+SSR và CSR: 
+    - Serve rendering và Client rendering 
+    Serve rendering tốt cho SEO, 
+    Client rendering tốt cho người dùng 
+    - Serve rendering nhanh hơn Client rendering trong lần đầu tiên load, Client rendering sẽ không phải load lại trang và mượt hơn 
+
+
+
+
+
+
+
+
+
+

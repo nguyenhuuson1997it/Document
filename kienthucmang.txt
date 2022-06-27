@@ -1,0 +1,12 @@
+DOMAIN 
+    www.google.com.vn.
+    www: subdomain 
+    google: domain 
+    .com: SLD 
+    .vn: TLD 
+    . Bởi vì máy chủ lưu domain lưu từ phải qua trái dấu chấm tượng trưng cho root 
+DOMAIN -> DNS -> IP 
+CLIENT -> Giao thức TCP -> giao thức HTTP -> SERVER 
+CLIENT gửi request và SERVER trả response 
+
+
