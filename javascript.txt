@@ -111,6 +111,28 @@ apply(), bind(), call():
 	Binding.apply(obj, ['apply']) => property, apply 
 	var objBind = Binding.bind(obj) => objBind('bind'); 
 
+
+
+getter: khi muốn gọi một hàm dưới dạng một biến 
+
+	dùng với object: 
+		var object = {
+			property: 'property', 
+			get getProperty() {
+				return this.property; 
+			} 
+		} 
+		object.getProperty; 
+		
+	dùng với class: 
+		class Class {
+			static property = 'property'; 
+			get static getProperty() {
+				return this.property; 
+			} 
+		} 
+		Class.getProperty; 
+		
 Rest parameters: 
 	Dùng để nhóm các parameters 
 		nhóm tất cả: function([...all]) => trả về một mảng parameter
