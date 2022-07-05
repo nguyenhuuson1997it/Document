@@ -63,33 +63,60 @@ array.shift(): xóa phần tử đầu và trả về phần tử đã xóa
 array.push(element, ''): thêm phần tử vào mảng cuối mảng và trả về 
 array.unshift(element, ''): thêm phần tử vào đầu mảng và trả về 
 
-Declaration function 
 
-- Có thể gọi trước khi function khởi tạo Hosting 
 
-function declare(){
+
+
+
+
+
+
+FUNCTION:
+Declaration function có hosting
+	function declare(){
+
+	}  
+
+Expression function không có hosting
+	var expresssion = function(){
 	
-}  
+	} 
 
-Expression function 
+Arrow function không có hosting, this là this của object global và không tạo được constructor
+	var arrow = () => {} 
+	var arrow = () => 
+	var arrow => 
 
-- Không thể gọi trước khi function khởi tạo Hosting 
-
-expresssion = function(){
+arguments: object mảng giả chứa tất cả đối số truyền vào function 
+	lưu ý nếu có strict mode thì parameter và argumenst có reference với nhau => (a) { arguments[0] = 'update'; // also updates a }
 	
-} 
+biến đổi về dạng mảng: 
+	var args = Array.prototype.slice.call(arguments); 
+	var args = [].slice.call(arguments); 
+	let args = Array.from(arguments);
+	let args = [...arguments];
+
+apply(), bind(), call(): 
+	
+	dùng context this của một object truyền vào thay cho context this của function, 
+	sự khác nhau call dùng tham số, apply dùng mảng tham số, bind nạp sẵn khi nào gọi thì dùng
+
+	var obj = { property = 'object' }
+
+	function Binding(paramters) {
+		console.log(this.object, paramters); // this.object in function is undefined 
+	}
+
+	Binding.call(obj, 'call') => property, call 
+	Binding.apply(obj, ['apply']) => property, apply 
+	var objBind = Binding.bind(obj) => objBind('bind'); 
+
+Rest parameters: 
+	Dùng để nhóm các parameters 
+		nhóm tất cả: function([...all]) => trả về một mảng parameter
+		nhóm một phần: function(specify, ...others) => lấy ra specify parameter chỉ định, others mảng paramter còn lại 
 
 
-
-
-
-
-
-
-
-
-Arrow function 
-- Không có this context, this đó sẽ bằng window và nó cũng không tạo được constructor  
 Polyfill chuyển es6 
 
 
@@ -368,11 +395,7 @@ THIS: Con trỏ tham chiếu
 	- this trong strict mode là undefined 
 	- this trong một event là phần tử 
 	
-	apply(), bind(), call() có thể gọi this ở mọi object, this không thể cập nhật 
-		call() vs apply() - object -> objectParent.methodOfParent.call(object); 
-		call() vs apply() - class -> bên trong function constructor functionParent.call(new function); 
-		call() argument -> objectParent.methodOfParent.call(object, argument); 
-		apply() argument -> objectParent.methodOfParent.call(object, ['argument']); 
+
 
 
 
