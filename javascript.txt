@@ -113,7 +113,9 @@ apply(), bind(), call():
 
 
 
-getter: khi muốn gọi một hàm dưới dạng một biến 
+GETTER & SETTER
+- getter: khi muốn gọi một hàm dưới dạng một biến 
+- setter: khi muốn gọi một hàm như một biến và có truyền thêm parameter
 
 	dùng với object: 
 		var object = {
@@ -121,17 +123,25 @@ getter: khi muốn gọi một hàm dưới dạng một biến
 			get getProperty() {
 				return this.property; 
 			} 
+			set setProperty(args) {
+				this.property = args; 
+			} 
 		} 
 		object.getProperty; 
-		
+		object.setProperty = 'setProperty'; 
+
 	dùng với class: 
 		class Class {
 			static property = 'property'; 
 			get static getProperty() {
 				return this.property; 
 			} 
+			set setProperty(args) {
+				this.property = args; 
+			} 
 		} 
 		Class.getProperty; 
+		Class.setProperty = 'setProperty'; 
 		
 Rest parameters: 
 	Dùng để nhóm các parameters 
